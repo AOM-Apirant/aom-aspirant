@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { registerUser } from "@/lib/auth";
 import { registerSchema } from "@/schemas/authSchema";
+import { ZodError } from "zod";
 
 export async function POST(request: NextRequest) {
   try {
@@ -21,21 +22,12 @@ export async function POST(request: NextRequest) {
       { status: 201 }
     );
   } catch (error: unknown) {
-    if (
-      error &&
-      typeof error === "object" &&
-      "name" in error &&
-      error.name === "ZodError"
-    ) {
+    if (error instanceof ZodError) {
       return NextResponse.json(
-        {
-          error: "Validation error",
-          details: (error as { errors: unknown }).errors,
-        },
+        { error: "Validation error", details: error.errors },
         { status: 400 }
       );
     }
-
     const errorMessage =
       error instanceof Error ? error.message : "Registration failed";
     return NextResponse.json({ error: errorMessage }, { status: 400 });
