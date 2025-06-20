@@ -20,17 +20,24 @@ export async function POST(request: NextRequest) {
       { message: "User registered successfully", user },
       { status: 201 }
     );
-  } catch (error: any) {
-    if (error.name === "ZodError") {
+  } catch (error: unknown) {
+    if (
+      error &&
+      typeof error === "object" &&
+      "name" in error &&
+      error.name === "ZodError"
+    ) {
       return NextResponse.json(
-        { error: "Validation error", details: error.errors },
+        {
+          error: "Validation error",
+          details: (error as { errors: unknown }).errors,
+        },
         { status: 400 }
       );
     }
 
-    return NextResponse.json(
-      { error: error.message || "Registration failed" },
-      { status: 400 }
-    );
+    const errorMessage =
+      error instanceof Error ? error.message : "Registration failed";
+    return NextResponse.json({ error: errorMessage }, { status: 400 });
   }
 }

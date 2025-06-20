@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function About() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-8 sm:py-12 mobile-container">
@@ -62,7 +64,7 @@ export default function About() {
                 a platform where knowledge seekers can challenge themselves and grow.
               </p>
               <p className="text-gray-600 mobile-text leading-relaxed">
-                Whether you're preparing for exams, expanding your general knowledge, or simply looking for
+                Whether you&apos;re preparing for exams, expanding your general knowledge, or simply looking for
                 an intellectual challenge, AOM Aspirant is here to support your learning journey.
               </p>
             </div>
@@ -76,12 +78,12 @@ export default function About() {
             Ready to test your knowledge? Sign up today and start your learning journey with AOM Aspirant.
           </p>
           <div className="text-center">
-            <a
+            <Link
               href="/"
               className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 px-8 rounded-xl font-semibold hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 touch-button focus-ring mobile-text"
             >
               Start Learning Now
-            </a>
+            </Link>
           </div>
         </div>
       </div>
