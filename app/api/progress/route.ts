@@ -114,14 +114,23 @@ export async function GET() {
     const recentActivity = userProgress.quizHistory
       .slice(-5)
       .reverse()
-      .map((quiz) => ({
-        categoryId: quiz.categoryId,
-        quizId: quiz.quizId,
-        score: quiz.score,
-        totalQuestions: quiz.totalQuestions,
-        correctAnswers: quiz.correctAnswers,
-        completedAt: quiz.completedAt,
-      }));
+      .map(
+        (quiz: {
+          categoryId: string;
+          quizId: string;
+          score: number;
+          totalQuestions: number;
+          correctAnswers: number;
+          completedAt: Date;
+        }) => ({
+          categoryId: quiz.categoryId,
+          quizId: quiz.quizId,
+          score: quiz.score,
+          totalQuestions: quiz.totalQuestions,
+          correctAnswers: quiz.correctAnswers,
+          completedAt: quiz.completedAt,
+        })
+      );
 
     return NextResponse.json({
       totalQuizzes: userProgress.totalQuizzes,
