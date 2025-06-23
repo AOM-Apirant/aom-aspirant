@@ -48,6 +48,26 @@ body {
   }
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 .animate-fade-in-up {
   animation: fadeInUp 0.6s ease-out;
 }
@@ -58,6 +78,14 @@ body {
 
 .animate-slide-in-right {
   animation: slideInRight 0.6s ease-out;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.3s ease-out;
 }
 
 /* Custom scrollbar */
@@ -161,4 +189,42 @@ body {
 
 .animate-pulse-slow {
   animation: pulse-slow 3s ease-in-out infinite;
+}
+
+/* Loader specific animations */
+@keyframes bounce-delayed {
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+.animate-bounce-delayed {
+  animation: bounce-delayed 1.4s ease-in-out infinite both;
+}
+
+.animate-bounce-delayed:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.animate-bounce-delayed:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+/* Backdrop blur animation */
+@keyframes backdropBlur {
+  from {
+    backdrop-filter: blur(0px);
+  }
+  to {
+    backdrop-filter: blur(4px);
+  }
+}
+
+.animate-backdrop-blur {
+  animation: backdropBlur 0.3s ease-out;
 }
